@@ -1,6 +1,8 @@
 # BAI-Projekt-Zaliczeniowy
 
 Temat: Aplikacja wspomagająca planowanie treningów sportowych.
+Członkowie: Jakub Skocz, Mateusz Brodowicz, Dominik Bizoń
+Grupa: 7
 
 Celem tej pracy jest zaprojektowanie i realizacja aplikacji umożliwiającej planowanie treningów sportowych. 
 Stworzenie takiej aplikacji ma na celu ułatwienie planowania treningów sportowych, poprzez przyjazny i możliwie prosty interfejs aplikacji internetowej. 
@@ -14,35 +16,35 @@ Aplikacja umożliwia tworzenie planu treningowego, poprzez wprowadzenie przez u�
 Użytkownik może korzystać z aplikacji, używając przeglądarki internetowej.
 
 Wymagania funkcjonalne:
--Rejestracja użytkownika,
--Logowanie użytkownika,
--Wyświetlanie dostępnych ćwiczeń,
--Grupowanie ćwiczeń w kategorie,
--Wyświetlanie planów treningowych użytkownika,
--Dodawanie nowego planu treningu,
--Dodawanie ćwiczenia do planu treningu,
--Wprowadzanie ilości powtórzeń i obciążenia dla danego ćwiczenia,
--Zatwierdzenie wykonania ćwiczenia,
--Edycja ilości powtórzeń i obciążenia,
--Usuwanie ćwiczenia z planu treningu,
--Usuwanie planu treningu,
--Wylogowanie użytkownika.
+- Rejestracja użytkownika,
+- Logowanie użytkownika,
+- Wyświetlanie dostępnych ćwiczeń,
+- Grupowanie ćwiczeń w kategorie,
+- Wyświetlanie planów treningowych użytkownika,
+- Dodawanie nowego planu treningu,
+- Dodawanie ćwiczenia do planu treningu,
+- Wprowadzanie ilości powtórzeń i obciążenia dla danego ćwiczenia,
+- Zatwierdzenie wykonania ćwiczenia,
+- Edycja ilości powtórzeń i obciążenia,
+- Usuwanie ćwiczenia z planu treningu,
+- Usuwanie planu treningu,
+- Wylogowanie użytkownika.
 
 Widoki:
--Oknko logowania
--Podgląd dostępnych ćwiczeń (dostępne dla wszystkich)
--Przegląd planów użytkownika (dostępne dla zalogowanego użyttkownika)
--Widok danego planu (dostępne dla zalogowanego użyttkownika)
--Widok dodania/edycji ćwiczenia (dostępne dla zalogowanego użyttkownika)
+- Oknko logowania
+- Podgląd dostępnych ćwiczeń (dostępne dla wszystkich)
+- Przegląd planów użytkownika (dostępne dla zalogowanego użyttkownika)
+- Widok danego planu (dostępne dla zalogowanego użyttkownika)
+- Widok dodania/edycji ćwiczenia (dostępne dla zalogowanego użyttkownika)
  
 Baza danych: MySQL XAMPP
 Backend: Node.js
 Frontend: VUE 3
 
 Baza danych - Tabele:
--user
--workoutplan
--training
--category
--exercise
--unit
+- user
+- workoutplan
+- training
+- category
+- exercise
+- unit
