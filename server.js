@@ -33,8 +33,8 @@ require("./routes/training.routes.js")(app);
  
   
 // set port, listen for requests
-app.listen(3000, () => {
-  console.log("Server is running on port 3000.");
+app.listen(3050, () => {
+  console.log("Server is running on port 3050.");
 });
 
 
