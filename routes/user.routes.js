@@ -11,7 +11,7 @@ module.exports = app => {
     app.get("/users", users.findAll);
   
     // Retrieve a single user with userId
-    app.get("/user/:userId", passport.authenticate('jwt', { session : false }), users.findOne);
+    app.get("/user/:userId", users.findOne);
   
     // Update a user with userId
     app.put("/user/:userId", users.update);
