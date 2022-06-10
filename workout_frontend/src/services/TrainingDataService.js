@@ -6,6 +6,13 @@ class TrainingDataService {
   getAllCategories() {
     return http.get("/categories");
   }
+  getAllPlans(userID) {
+    return http.get("/workoutplan/" + userID);
+  }
+  addNewlPlan(newPlan) {
+    return http.post("/workoutplans", newPlan);
+  }
+
   
 }
 export default new TrainingDataService();
