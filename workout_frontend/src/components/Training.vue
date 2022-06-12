@@ -148,6 +148,161 @@
         </div>
       </div>
     </div>
+    <div v-if="trainingID != 0">
+      <div class="row justify-content-center">
+        <div class="card shadow-sm col-lg-8 m-4">
+          <div class="card-body">
+            <form onsubmit="return false">
+              <div class="mb-4">
+                <div class="m-2">
+                  <label for="selectCategory" class="form-label float-start"
+                    >Category</label
+                  >
+                  <select
+                    class="form-select"
+                    id="selectCategory"
+                    aria-label="Default select example"
+                    v-model="training.categoryID"
+                    required
+                    @change="prepareExercises()"
+                  >
+                    <option
+                      v-for="category in categories"
+                      v-bind:key="category.category_name"
+                      :value="category.categoryID"
+                    >
+                      {{ category.name }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="m-2">
+                  <label for="selectExercise" class="form-label float-start"
+                    >Exercise</label
+                  >
+                  <select
+                    class="form-select"
+                    id="selectExercise"
+                    aria-label="Default select example"
+                    v-model="training.exerciseID"
+                    required
+                  >
+                    <option
+                      v-for="exe in exercises"
+                      v-bind:key="exe.name"
+                      :value="exe.exerciseID"
+                    >
+                      {{ exe.name }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="m-2">
+                  <label for="inputReps" class="form-label float-start"
+                    >Reps</label
+                  >
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="inputReps"
+                    v-model="training.reps"
+                    required
+                  />
+                </div>
+
+                <div class="m-2">
+                  <label for="inputValue" class="form-label float-start"
+                    >Value</label
+                  >
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="inputValue"
+                    v-model="training.value"
+                    required
+                  />
+                </div>
+
+                <div class="m-2">
+                  <label for="selectUnit" class="form-label float-start"
+                    >Unit</label
+                  >
+                  <select
+                    class="form-select"
+                    id="selectUnit"
+                    aria-label="Default select example"
+                    v-model="training.unit_name"
+                    required
+                  >
+                    <option
+                      v-for="unit in units"
+                      v-bind:key="unit.unit_name"
+                      :value="training.unit_name"
+                    >
+                      {{ unit.name }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="mt-4">
+                  <div class="form-check">
+                    <label class="form-check-label mx-2"> Done: </label>
+                    <div v-if="training.done">
+                      <span
+                        class="
+                          material-icons
+                          text-success
+                          cursor-pointer
+                          fs-2
+                          btn-done
+                        "
+                        id="checkboxDone"
+                        @click="training.done = false"
+                      >
+                        check_circle
+                      </span>
+                    </div>
+                    <div v-if="!training.done">
+                      <span
+                        id="checkboxDone"
+                        class="material-icons cursor-pointer fs-2 btn-done"
+                        @click="training.done = true"
+                      >
+                        highlight_off
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="float-end">
+                <button
+                  type="button"
+                  class="btn btn-secondary m-2"
+                  @click="$router.push(`/myplan/${workoutplanID}`)"
+                >
+                  Back
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger m-2"
+                  @click="deleteTraining()"
+                >
+                  Delete
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-success m-2"
+                  @click="updateTraining()"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -186,9 +341,21 @@ export default {
     this.trainingID = route.params.id;
     this.workoutplanID = route.params.wid;
     this.newTraining.workoutplanID = route.params.wid;
-
+    if (this.trainingID != 0) {
+      this.getTrainingById(this.trainingID);
+    }
   },
   methods: {
+    getTrainingById() {
+      TrainingDataService.getTrainingById(this.trainingID)
+        .then((response) => {
+          this.training = response.data[0];
+          this.prepareExercises();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
     getUnits() {
       TrainingDataService.getUnits()
         .then((response) => {
@@ -223,9 +390,32 @@ export default {
           (exe) => exe.categoryID == this.newTraining.categoryID
         );
       }
+      if (this.trainingID != 0) {
+        this.exercises = this.allExercises.filter(
+          (exe) => exe.categoryID == this.training.categoryID
+        );
+      }
     },
     addTraining() {
       TrainingDataService.addNewTraining(this.newTraining)
+        .then((response) => {
+          window.location.href = "/myplan/" + this.workoutplanID;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    updateTraining() {
+      TrainingDataService.updateTraining(this.training)
+        .then((response) => {
+          window.location.href = "/myplan/" + this.workoutplanID;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    deleteTraining() {
+      TrainingDataService.deleteTraining(this.training.trainingID)
         .then((response) => {
           window.location.href = "/myplan/" + this.workoutplanID;
         })
