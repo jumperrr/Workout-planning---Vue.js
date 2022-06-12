@@ -53,15 +53,13 @@ export default {
   },
   mounted() {
     if (localStorage.getItem("token") != null) {
-      this.$router.push("home");
+      this.$router.push("/home");
     }
   },
   methods: {
     login() {
-      console.log(this.credentials);
       UserService.login(this.credentials)
         .then((response) => {
-          console.log(response.data);
           localStorage.setItem("user", response.data.data.userID);
           localStorage.setItem("token", response.data.data.token);
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <img
           src="../assets/logo.png"
@@ -31,8 +31,7 @@
               <a class="nav-link" href="/exercises">Exercises</a>
             </li>
           </ul>
-        </div>
-        <button
+          <button
           v-if="user != null"
           class="btn btn-sm btn-danger"
           @click="logout()"
@@ -46,6 +45,7 @@
         >
           Login
         </button>
+        </div>
       </div>
     </nav>
   </div>
@@ -60,17 +60,15 @@ export default {
   },
   mounted() {
     this.getUser();
-    console.log(this.user);
   },
   methods: {
     login() {
-      this.$router.push("login");
+      this.$router.push("/login");
     },
     logout() {
       localStorage.clear();
       this.user = null;
-      console.log("logout");
-      this.$router.push("login");
+      this.$router.push("/login");
     },
     getUser() {
       this.user = localStorage.getItem("user");

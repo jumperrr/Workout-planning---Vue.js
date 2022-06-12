@@ -46,10 +46,8 @@ export default {
   },
   methods: {
     addNewPlan() {
-      console.log(this.newPlan);
-      TrainingDataService.addNewlPlan(this.newPlan)
+      TrainingDataService.addNewPlan(this.newPlan)
         .then((response) => {
-          console.log(response.data);
           window.location.href = "/myplans";
         })
         .catch((e) => {

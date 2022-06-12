@@ -7,6 +7,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
+import 'material-icons/iconfont/material-icons.css';
 
 const app = createApp(App);
 app.use(router,VueAxios, axios);

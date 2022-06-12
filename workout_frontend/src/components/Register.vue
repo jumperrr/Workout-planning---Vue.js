@@ -120,11 +120,9 @@ export default {
     register() {
       var toastLiveExample = document.getElementById("liveToast");
       var toast = new Toast(toastLiveExample);
-      console.log(this.user);
       if (this.user.password.length > 5) {
           UserService.addUser(this.user)
         .then((response) => {
-          console.log(response.data);
           window.location.href = "/login";
           this.toastMessage = "Success";
           toast.show();

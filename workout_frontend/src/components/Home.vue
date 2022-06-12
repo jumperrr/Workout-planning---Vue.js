@@ -23,7 +23,6 @@ data() {
     };
   },
    mounted() {
-    console.log('test');
     this.userID = localStorage.getItem("user");
     if (this.userID != null) {
           this.getUser(this.userID);

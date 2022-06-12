@@ -20,7 +20,7 @@ export default createRouter({
     { path: '/myplans', component: MyPlans },
     { path: '/myplan/:id', component: MyPlan },
     { path: '/newplan', component: NewPlan },
-    { path: '/training', component: Training },
+    { path: '/training/:id', component: Training },
 
   ]
 })

@@ -1,35 +1,38 @@
 <template>
   <div class="container">
-    <div class="row justify-content-center">
-      <table class="table table-hover table-responsive">
-        <thead class="table-dark">
-          <tr>
-            <th colspan="3" scope="col">
-              <h4>My plans</h4>
-            </th>
-          </tr>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Date</th>
-            <th scope="col">Plan name</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(plan, index) in workoutplan" :key="plan" @click="$router.push(`/myplan/${plan.workoutplanID}`)">
-            <th>{{ index + 1 }}</th>
-            <td>{{ plan.date }}</td>
-            <td>{{ plan.name }}</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="col-8 col-lg-6">
+    <div class="row justify-content-between">
+      <div class="col-auto ps-sm-0"><h4>My plans</h4></div>
+      <div class="col-6 col-lg-4 pe-sm-0">
         <button
           type="button"
-          class="btn btn-success m-4 w-100"
+          class="btn btn-success mb-4 w-100 float-end"
           @click="$router.push('/newplan')"
         >
-          Add Plan
+          Add new
         </button>
+      </div>
+      <div class="table-responsive p-0">
+        <table class="table table-hover table-responsive">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Date</th>
+              <th scope="col">Plan name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="cursor-pointer"
+              v-for="(plan, index) in workoutplan"
+              :key="plan"
+              @click="$router.push(`/myplan/${plan.workoutplanID}`)"
+            >
+              <th>{{ index + 1 }}</th>
+              <td>{{ plan.date }}</td>
+              <td>{{ plan.name }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -37,6 +40,7 @@
 
 <script>
 import TrainingDataService from "../services/TrainingDataService";
+import moment from "moment";
 
 export default {
   data() {
@@ -53,10 +57,14 @@ export default {
   },
   methods: {
     getPlans() {
-      console.log(this.userID);
       TrainingDataService.getAllPlans(this.userID)
         .then((response) => {
           this.workoutplan = response.data;
+          if (this.workoutplan.length != 0) {
+            this.workoutplan.forEach((plan) => {
+              plan.date = moment(plan.date).format("DD-MM-YYYY");
+            });
+          }
         })
         .catch((e) => {
           console.log(e);
