@@ -1,8 +1,5 @@
-# BAI-Projekt-Zaliczeniowy
+# Aplikacja wspomagająca planowanie treningów sportowych.
 
-Temat: Aplikacja wspomagająca planowanie treningów sportowych.
-Członkowie: Jakub Skocz, Mateusz Brodowicz, Dominik Bizoń
-Grupa: 7
 
 Celem tej pracy jest zaprojektowanie i realizacja aplikacji umożliwiającej planowanie treningów sportowych. 
 Stworzenie takiej aplikacji ma na celu ułatwienie planowania treningów sportowych, poprzez przyjazny i możliwie prosty interfejs aplikacji internetowej. 
